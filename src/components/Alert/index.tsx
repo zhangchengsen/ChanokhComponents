@@ -17,7 +17,7 @@ interface IAlert {
   duration?: number;
   onClose?: () => void;
 }
-type PAlert = IAlert & React.HTMLAttributes<HTMLElement>;
+export type PAlert = IAlert & React.HTMLAttributes<HTMLElement>;
 const Alert: React.FC<PAlert> = memo((props) => {
   const {
     type,
@@ -55,7 +55,6 @@ const Alert: React.FC<PAlert> = memo((props) => {
       popupMaskNode.setAttribute("class", "position-fixed top-0 left-center");
       document.body.appendChild(popupMaskNode);
     }
-
     let tar = document.getElementById("alert_div");
     setTarget(tar);
   }, []);
@@ -68,8 +67,13 @@ const Alert: React.FC<PAlert> = memo((props) => {
         appear
         in={show}
       >
-        <div className="m-2 ">
-          <div className={classes} style={{ top }} {...restProps}>
+        <div className="m-2">
+          <div
+            data-testid="alert_id"
+            className={classes}
+            style={{ top }}
+            {...restProps}
+          >
             <div className="title-wrap">
               <div className="title">{title}</div>
               <div className="close" onClick={() => close()}>
