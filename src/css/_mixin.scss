@@ -32,3 +32,41 @@
     border-color: $border;
   }
 }
+@mixin Alert-style($color, $bg-color) {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  color: $color;
+  background-color: $bg-color;
+  position: relative;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: left !important;
+  > .title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    > .close {
+      width: 15px;
+      height: 15px;
+      font-size: 20px;
+      line-height: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+
+  > .description {
+    width: 460px;
+    font-size: 14px;
+  }
+}
+@mixin left_center {
+  left: 50%;
+  transform: translateX(-50%);
+}

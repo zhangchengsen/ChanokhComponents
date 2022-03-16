@@ -1,3 +1,4 @@
+// 按钮
 .btn {
   position: relative;
   display: inline-block;
@@ -78,4 +79,60 @@
     color: $btn-link-disabled-color;
     pointer-events: none;
   }
+}
+// Alert
+.Alert-primary {
+  @include Alert-style($white, $primary);
+}
+.Alert-success {
+  @include Alert-style($white, $success);
+}
+.Alert-default {
+  @include Alert-style($white, $gray-400);
+}
+.Alert-danger {
+  @include Alert-style($white, $danger);
+}
+.Alert-info {
+  @include Alert-style($white, $info);
+}
+
+.m-2 {
+  margin: 20px;
+}
+.Alert-enter,
+.Alert-appear {
+  opacity: 0;
+}
+.Alert-enter-active,
+.Alert-appear-active {
+  opacity: 1;
+  transition: all 500ms;
+}
+.Alert-exit {
+  opacity: 1;
+}
+.Alert-exit-active {
+  opacity: 0;
+  transition: all 500ms;
+}
+
+// 其他
+.top-0 {
+  top: 0;
+}
+.left-0 {
+  left: 0;
+}
+.right-0 {
+  right: 0;
+}
+.bottom-0 {
+  bottom: 0;
+}
+.position-fixed {
+  position: fixed;
+}
+.left-center {
+  @include left_center(); //transition 居中
 }
