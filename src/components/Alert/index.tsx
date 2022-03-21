@@ -43,7 +43,7 @@ const Alert: React.FC<PAlert> = memo((props) => {
         setState(false);
       }, duration);
     }
-  }, []);
+  }, [duration]);
   const classes = classNames(className, {
     [`Alert-${type}`]: type,
   });

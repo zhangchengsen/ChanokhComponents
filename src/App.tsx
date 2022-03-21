@@ -2,27 +2,38 @@ import React, { useState } from "react";
 import "./App.css";
 import Alert, { AlertType } from "./components/Alert";
 import Button, { ButtonSize, ButtonType } from "./components/button";
-
+import Menu, { MenuItem, SubMenu } from "./components/Menu";
+type bool_key = [boolean, string];
 function App() {
   const [show, setShow] = useState(true);
+  // 元组 bool 和key可以同时刷新
+  const [showAlert, setShowAlert] = useState<bool_key>([false, "Alert_key"]);
   const changeShow = () => {
     setShow(false);
     setTimeout(() => {
       setShow(true);
     }, 2000);
   };
+  const getAlert = () => {
+    setShowAlert([true, showAlert[1] + "1"]);
+  };
   return (
     <div className="App">
-      <Alert title="Chanokh_apt Alert~">Alert组件展示</Alert>
-      <Alert type={AlertType.Info}></Alert>
-      <Alert
-        type={AlertType.Danger}
-        onClose={() => alert("我被关闭了")}
-        description="关闭我还能多一个弹窗！"
-      ></Alert>
-      <Alert type={AlertType.Default}></Alert>
-      <Alert type={AlertType.Success}></Alert>
-      <Alert duration={1000}></Alert>
+      {showAlert[0] && (
+        <div key={showAlert[1]}>
+          <Alert title="Chanokh_apt Alert~">Alert组件展示</Alert>
+          <Alert type={AlertType.Info}></Alert>
+          <Alert
+            type={AlertType.Danger}
+            onClose={() => alert("我被关闭了")}
+            description="关闭我还能多一个弹窗！"
+          ></Alert>
+          <Alert type={AlertType.Default}></Alert>
+          <Alert type={AlertType.Success}></Alert>
+          <Alert duration={1000}></Alert>
+        </div>
+      )}
+
       <h2>Chanokh_apt Button</h2>
       <Button>Button</Button>
       <Button autoFocus>AutoFocus Button</Button>
@@ -40,6 +51,39 @@ function App() {
       <Button btnType={ButtonType.Link} disabled>
         Link Disabled
       </Button>
+      <h2>Chanokh Alert</h2>
+      <Button btnType={ButtonType.Primary} onClick={() => getAlert()}>
+        展示Alert组件
+      </Button>
+      <h2>Chanokh Menu</h2>
+      <Menu defaultIdx={"2"} onSelect={(idx) => {}}>
+        <MenuItem>index 0</MenuItem>
+        <MenuItem>index 1</MenuItem>
+        <MenuItem>index 2</MenuItem>
+        <MenuItem disabled>disabled</MenuItem>
+        <SubMenu title="嗨11">
+          <MenuItem>abcee</MenuItem>
+          <MenuItem>abc</MenuItem>
+        </SubMenu>
+      </Menu>
+      <br />
+      <Menu mode="vertical" defaultIdx={"2"} onSelect={(idx) => {}}>
+        <MenuItem>index 0</MenuItem>
+        <MenuItem>index 1</MenuItem>
+        <MenuItem>index 2</MenuItem>
+        <MenuItem disabled>disabled</MenuItem>
+        <SubMenu title="嗨12221">
+          <MenuItem>abcD</MenuItem>
+          <MenuItem>abc</MenuItem>
+        </SubMenu>
+        <SubMenu title="车队" defaultOpen>
+          <MenuItem>奥迪</MenuItem>
+          <MenuItem>劳斯莱斯</MenuItem>
+        </SubMenu>
+        <MenuItem>index 2</MenuItem>
+
+        {/* <li>1212</li> */}
+      </Menu>
     </div>
   );
 }
