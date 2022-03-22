@@ -1,3 +1,37 @@
+// common
+.change-enter,
+.change-appear,
+.change-exit-done {
+  opacity: 0;
+}
+.change-enter-active,
+.change-appear-active {
+  opacity: 1;
+  transition: all 0.6s;
+}
+.change-exit {
+  opacity: 1;
+}
+.change-exit-active {
+  opacity: 0;
+  transition: all 0.6s;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes _appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 // 按钮
 .btn {
   position: relative;
@@ -99,22 +133,6 @@
 
 .m-2 {
   margin: 20px;
-}
-.Alert-enter,
-.Alert-appear {
-  opacity: 0;
-}
-.Alert-enter-active,
-.Alert-appear-active {
-  opacity: 1;
-  transition: all 500ms;
-}
-.Alert-exit {
-  opacity: 1;
-}
-.Alert-exit-active {
-  opacity: 0;
-  transition: all 500ms;
 }
 
 // 其他
@@ -273,19 +291,36 @@
   }
 }
 // Tabs
+@keyframes dragUpAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+@keyframes dragDownAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(10px);
+  }
+}
+
 .Tabs {
   &-title {
     display: flex;
     align-items: center;
     padding-left: 0;
+    width: 100%;
+    border-bottom: 1px solid $gray-400;
     .TabItem {
       cursor: pointer;
       list-style: none;
       padding: $menu-item-padding-y 25px;
       font-size: 16px;
       font-weight: 700;
-      color: $primary;
-      border-bottom: 1px solid $gray-400;
       &:hover {
         background: $gray-200;
         text-decoration: underline;
@@ -293,10 +328,43 @@
     }
     .TabItem-active {
       cursor: pointer;
+      color: $primary;
+
       border: 1px solid $gray-400;
       border-bottom: none;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
     }
   }
+  &-bottom {
+    padding: 15px;
+    width: 100%;
+  }
+}
+.down {
+  text-align: right;
+  opacity: 0;
+  animation: appear 1s linear 0.6s;
+  animation-fill-mode: forwards;
+  .iconfont {
+    &:hover {
+      cursor: pointer;
+      animation: dragDownAnimation 0.8s linear infinite;
+    }
+  }
+}
+.up {
+  text-align: center;
+  opacity: 0;
+  animation: _appear 1s linear 0.6s;
+  animation-fill-mode: forwards;
+  .iconfont {
+    &:hover {
+      cursor: pointer;
+      animation: dragUpAnimation 0.8s linear infinite;
+    }
+  }
+}
+.opacity {
+  opacity: 1;
 }

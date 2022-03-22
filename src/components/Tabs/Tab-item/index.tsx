@@ -24,7 +24,7 @@ const TabItem: React.FC<ITabItem> = memo((props) => {
     index === context.index &&
       handleContent &&
       handleContent(children ? children : <div></div>);
-  }, [context.index, index, handleContent, children]);
+  }, [context.index, index, handleContent]);
 
   return (
     <li

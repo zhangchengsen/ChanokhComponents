@@ -35,32 +35,32 @@ function App() {
         </div>
       )}
 
-      <h2>Chanokh_apt Button</h2>
-      <Button>Button</Button>
-      <Button autoFocus>AutoFocus Button</Button>
-      <Button disabled>Button</Button>
-      {show && <Button onClick={() => changeShow()}>Click Button</Button>}
-      <Button size={ButtonSize.Large}>Button Large</Button>
-      <Button size={ButtonSize.Small}>Button Small</Button>
-      <Button btnType={ButtonType.Primary}>Button Primary</Button>
-      <Button btnType={ButtonType.Danger}>Button Danger</Button>
-      <Button btnType={ButtonType.Default}>Button Default</Button>
-      <Button btnType={ButtonType.Link}>Button Link</Button>
-      <Button btnType={ButtonType.Link} href="http://wechatweb.ymtx.xyz">
-        Button Link Redirect
-      </Button>
-      <Button btnType={ButtonType.Link} disabled>
-        Link Disabled
-      </Button>
-      <h2>Chanokh Alert</h2>
-      <Button btnType={ButtonType.Primary} onClick={() => getAlert()}>
-        展示Alert组件
-      </Button>
       <h2>Chanokh Tabs</h2>
       <Tabs defaultActive={0} defaultOpen>
-        <TabItem title="tab1">我是tab1啦啦啦啦</TabItem>
-        <TabItem title="tab2">tab2在此</TabItem>
-        <TabItem title="tabber"></TabItem>
+        <TabItem title="Chanokh_apt Button">
+          <Button>Button</Button>
+          <Button autoFocus>AutoFocus Button</Button>
+          <Button disabled>Button</Button>
+          {show && <Button onClick={() => changeShow()}>Click Button</Button>}
+          <Button size={ButtonSize.Large}>Button Large</Button>
+          <Button size={ButtonSize.Small}>Button Small</Button>
+          <Button btnType={ButtonType.Primary}>Button Primary</Button>
+          <Button btnType={ButtonType.Danger}>Button Danger</Button>
+          <Button btnType={ButtonType.Default}>Button Default</Button>
+          <Button btnType={ButtonType.Link}>Button Link</Button>
+          <Button btnType={ButtonType.Link} href="http://wechatweb.ymtx.xyz">
+            Button Link Redirect
+          </Button>
+          <Button btnType={ButtonType.Link} disabled>
+            Link Disabled
+          </Button>
+        </TabItem>
+        <TabItem title="Chanokh Alert">
+          <Button btnType={ButtonType.Primary} onClick={() => getAlert()}>
+            展示Alert组件
+          </Button>
+        </TabItem>
+        {/* <TabItem title="tabber"></TabItem> */}
       </Tabs>
       {/* Menu */}
       <h2>Chanokh Menu</h2>

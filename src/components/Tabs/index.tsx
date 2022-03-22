@@ -5,6 +5,7 @@ import React, {
   useEffect,
   FunctionComponentElement,
 } from "react";
+import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 import Item, { ITabItem } from "./Tab-item";
 type selectType = () => void;
@@ -44,7 +45,7 @@ const Tabs: React.FC<ITabs> = memo((props) => {
 
   //获取子组件传递的content
   const getContent = () => {
-    return isOpen && <div>{content}</div>;
+    return <div>{content}</div>;
   };
 
   // 点击回调
@@ -82,7 +83,22 @@ const Tabs: React.FC<ITabs> = memo((props) => {
       <Context.Provider value={passContext}>
         <ul className="Tabs-title">{renderChildren()}</ul>
       </Context.Provider>
-      {getContent()}
+      <CSSTransition
+        classNames="change"
+        timeout={600}
+        in={isOpen}
+        appear
+        unmountOnExit={true}
+      >
+        <div>{getContent()}</div>
+      </CSSTransition>
+
+      <div className={`Tabs-bottom ${isOpen ? "up" : "down"}`}>
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          className={`iconfont icon-${isOpen ? "shangla" : "shangla1"}`}
+        ></div>
+      </div>
     </div>
   );
 });

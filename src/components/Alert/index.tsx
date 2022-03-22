@@ -61,8 +61,8 @@ const Alert: React.FC<PAlert> = memo((props) => {
   return target ? (
     createPortal(
       <CSSTransition
-        timeout={500}
-        classNames="Alert"
+        timeout={600}
+        classNames="change"
         unmountOnExit={true}
         appear
         in={show}
