@@ -272,3 +272,31 @@
     border-left: $menu-item-active-border-width solid $menu-item-active-color;
   }
 }
+// Tabs
+.Tabs {
+  &-title {
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    .TabItem {
+      cursor: pointer;
+      list-style: none;
+      padding: $menu-item-padding-y 25px;
+      font-size: 16px;
+      font-weight: 700;
+      color: $primary;
+      border-bottom: 1px solid $gray-400;
+      &:hover {
+        background: $gray-200;
+        text-decoration: underline;
+      }
+    }
+    .TabItem-active {
+      cursor: pointer;
+      border: 1px solid $gray-400;
+      border-bottom: none;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+  }
+}

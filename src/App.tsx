@@ -3,6 +3,7 @@ import "./App.css";
 import Alert, { AlertType } from "./components/Alert";
 import Button, { ButtonSize, ButtonType } from "./components/button";
 import Menu, { MenuItem, SubMenu } from "./components/Menu";
+import Tabs, { TabItem } from "./components/Tabs";
 type bool_key = [boolean, string];
 function App() {
   const [show, setShow] = useState(true);
@@ -55,11 +56,17 @@ function App() {
       <Button btnType={ButtonType.Primary} onClick={() => getAlert()}>
         展示Alert组件
       </Button>
+      <h2>Chanokh Tabs</h2>
+      <Tabs defaultActive={0} defaultOpen>
+        <TabItem title="tab1">我是tab1啦啦啦啦</TabItem>
+        <TabItem title="tab2">tab2在此</TabItem>
+        <TabItem title="tabber"></TabItem>
+      </Tabs>
+      {/* Menu */}
       <h2>Chanokh Menu</h2>
       <Menu defaultIdx={"2"} onSelect={(idx) => {}}>
         <MenuItem>index 0</MenuItem>
         <MenuItem>index 1</MenuItem>
-        <MenuItem>index 2</MenuItem>
         <MenuItem disabled>disabled</MenuItem>
         <SubMenu title="嗨11">
           <MenuItem>abcee</MenuItem>
@@ -69,8 +76,6 @@ function App() {
       <br />
       <Menu mode="vertical" defaultIdx={"2"} onSelect={(idx) => {}}>
         <MenuItem>index 0</MenuItem>
-        <MenuItem>index 1</MenuItem>
-        <MenuItem>index 2</MenuItem>
         <MenuItem disabled>disabled</MenuItem>
         <SubMenu title="嗨12221">
           <MenuItem>abcD</MenuItem>
@@ -81,8 +86,6 @@ function App() {
           <MenuItem>劳斯莱斯</MenuItem>
         </SubMenu>
         <MenuItem>index 2</MenuItem>
-
-        {/* <li>1212</li> */}
       </Menu>
     </div>
   );
