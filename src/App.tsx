@@ -4,6 +4,11 @@ import Alert, { AlertType } from "./components/Alert";
 import Button, { ButtonSize, ButtonType } from "./components/button";
 import Menu, { MenuItem, SubMenu } from "./components/Menu";
 import Tabs, { TabItem } from "./components/Tabs";
+import Icon from "./components/Icon";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+library.add(fas);
 type bool_key = [boolean, string];
 function App() {
   const [show, setShow] = useState(true);
@@ -87,6 +92,7 @@ function App() {
         </SubMenu>
         <MenuItem>index 2</MenuItem>
       </Menu>
+      <Icon icon="arrow-down" size="2x" theme="primary"></Icon>
     </div>
   );
 }

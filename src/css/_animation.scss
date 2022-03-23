@@ -1,0 +1,56 @@
+.change-enter,
+.change-appear,
+.change-exit-done {
+  opacity: 0;
+}
+.change-enter-active,
+.change-appear-active {
+  opacity: 1;
+  transition: all 0.6s;
+}
+.change-exit {
+  opacity: 1;
+}
+.change-exit-active {
+  opacity: 0;
+  transition: all 0.6s;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes _appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fold-enter,
+.fold-appear,
+.fold-exit-done {
+  opacity: 0;
+  transform: scaleY(0);
+}
+.fold-enter-active,
+.fold-appear-active {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+  transform-origin: center top;
+}
+.fold-exit {
+  opacity: 1;
+  transform: scaleY(1);
+}
+.fold-exit-active {
+  opacity: 0;
+  transform: scaleY(0);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+  transform-origin: center top;
+}

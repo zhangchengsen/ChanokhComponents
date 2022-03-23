@@ -1,37 +1,5 @@
 // common
-.change-enter,
-.change-appear,
-.change-exit-done {
-  opacity: 0;
-}
-.change-enter-active,
-.change-appear-active {
-  opacity: 1;
-  transition: all 0.6s;
-}
-.change-exit {
-  opacity: 1;
-}
-.change-exit-active {
-  opacity: 0;
-  transition: all 0.6s;
-}
-@keyframes appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes _appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+
 // 按钮
 .btn {
   position: relative;
@@ -163,6 +131,9 @@
     .submenu-title {
       display: flex;
       align-items: center;
+      .xiala {
+        width: 20px;
+      }
     }
     .arrow-icon {
       transition: transform 0.25s ease-in-out;
@@ -174,9 +145,12 @@
       }
       color: $menu-item-active-color !important;
     }
+    .is-vertical {
+      transform: rotate(0deg) !important;
+    }
   }
   .SubMenu-wrap {
-    display: none;
+    // display: none;
     list-style: none;
     padding-left: 0;
     white-space: nowrap;
@@ -192,8 +166,15 @@
       }
     }
   }
-  .Menu-open {
-    display: block !important;
+  // .Menu-open {
+  //   display: block !important;
+  // }
+}
+.vertical-active {
+  .submenu-title {
+    .is-vertical {
+      transform: rotate(180deg) !important;
+    }
   }
 }
 .Menu-vertical {

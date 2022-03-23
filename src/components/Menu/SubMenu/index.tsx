@@ -6,7 +6,9 @@ import React, {
 } from "react";
 import { IMenuItem } from "../MenuItem";
 import { MenuContext } from "../index";
+import Icon from "../../Icon";
 import classNames from "classnames";
+import { CSSTransition } from "react-transition-group";
 export interface ISubMenuProps {
   index?: string;
   title?: string;
@@ -67,18 +69,25 @@ const SubMenu: React.FC<ISubMenuProps> = memo((props) => {
     "Menu-open": show,
     [`border-${context.mode === "vertical" ? "left" : "bottom"}`]:
       index && context.index.startsWith(index + "-"),
+    [`vertical-active`]: context.mode === "vertical" && show,
   });
-
+  const iconClasses = classNames(`iconfont icon-xiala arrow-icon`, {
+    [`is-${context.mode}`]: context.mode,
+  });
   return (
     <li className={classes} {...restProps} {...hoverEvent()}>
-      <div className="submenu-title" {...clickEvent()}>
+      <div className={`submenu-title`} {...clickEvent()}>
         {title}
-        <span
-          style={{ width: "10px", paddingLeft: "10px" }}
-          className="iconfont icon-xiala"
-        ></span>
+        <span className={iconClasses}></span>
       </div>
-      {renderChildren()}
+      <CSSTransition
+        in={show}
+        unmountOnExit={true}
+        classNames="fold"
+        timeout={400}
+      >
+        {renderChildren()}
+      </CSSTransition>
     </li>
   );
 });
