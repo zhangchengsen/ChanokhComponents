@@ -10,13 +10,13 @@ import classNames from "classnames";
 import Item, { ITabItem } from "./Tab-item";
 type selectType = () => void;
 type onSelectType = (idx: number) => void;
-interface ITabs {
+export interface ITabs {
   className?: string;
   defaultActive?: number;
   onSelect?: selectType;
   defaultOpen?: boolean;
 }
-interface IContext {
+export interface IContext {
   index: number;
   onSelect?: onSelectType;
 }
@@ -40,7 +40,6 @@ const Tabs: React.FC<ITabs> = memo((props) => {
 
   const handleContent = (content: any) => {
     if (content) setContent(content);
-    console.log(content);
   };
 
   //获取子组件传递的content
@@ -95,6 +94,7 @@ const Tabs: React.FC<ITabs> = memo((props) => {
 
       <div className={`Tabs-bottom ${isOpen ? "up" : "down"}`}>
         <div
+          data-testid="drag"
           onClick={() => setIsOpen(!isOpen)}
           className={`iconfont icon-${isOpen ? "shangla" : "shangla1"}`}
         ></div>

@@ -18,7 +18,7 @@ const testVerProps: IMenuProps = {
   mode: "vertical",
   // defaultOpenSubMenus: ['4']
 };
-describe("test Button component", () => {
+describe("test Menu component", () => {
   render(
     <Menu {...testProps}>
       <MenuItem>0</MenuItem>

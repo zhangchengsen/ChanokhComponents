@@ -11,7 +11,7 @@ const timeOutProps: PAlert = {
 const closeProps: PAlert = {
   type: AlertType.Success,
 };
-describe("test Button component", () => {
+describe("test Alert component", () => {
   it("should render the correct primary alert", () => {
     render(<Alert {...testProps}>123</Alert>);
     const element = screen.getByTestId("alert_id"); //dom元素
