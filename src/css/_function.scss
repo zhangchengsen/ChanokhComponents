@@ -1,0 +1,4 @@
+@include zoomer("top", scaleY(0), scaleY(1), center top);
+@include zoomer("left", scale(0.45, 0.45), scale(1, 1), top);
+@include zoomer("right", scale(0.45, 0.45), scale(1, 1), top);
+@include zoomer("bottom", scale(0), scale(1), center bottom);

@@ -70,3 +70,28 @@
   left: 50%;
   transform: translateX(-50%);
 }
+@mixin zoomer($direct_alias, $start, $end, $direct) {
+  .zoom-#{$direct_alias}-enter,
+  .zoom-#{$direct_alias}-appear,
+  .zoom-#{$direct_alias}-exit-done {
+    opacity: 0;
+    transform: $start;
+  }
+  .zoom-#{$direct_alias}-enter-active,
+  .zoom-#{$direct_alias}-appear-active {
+    opacity: 1;
+    transform: $end;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+    transform-origin: $direct;
+  }
+  .zoom-#{$direct_alias}-exit {
+    opacity: 1;
+    transform: $end;
+  }
+  .zoom-#{$direct_alias}-exit-active {
+    opacity: 0;
+    transform: $start;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+    transform-origin: $direct;
+  }
+}

@@ -6,9 +6,9 @@ import React, {
 } from "react";
 import { IMenuItem } from "../MenuItem";
 import { MenuContext } from "../index";
-import Icon from "../../Icon";
 import classNames from "classnames";
 import { CSSTransition } from "react-transition-group";
+import Transition from "../../Transition";
 export interface ISubMenuProps {
   index?: string;
   title?: string;
@@ -80,14 +80,9 @@ const SubMenu: React.FC<ISubMenuProps> = memo((props) => {
         {title}
         <span className={iconClasses}></span>
       </div>
-      <CSSTransition
-        in={show}
-        unmountOnExit={true}
-        classNames="fold"
-        timeout={400}
-      >
+      <Transition in={show} timeout={400} animation="zoom-top">
         {renderChildren()}
-      </CSSTransition>
+      </Transition>
     </li>
   );
 });

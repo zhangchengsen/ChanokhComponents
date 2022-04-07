@@ -39,7 +39,6 @@ function App() {
           <Alert duration={1000}></Alert>
         </div>
       )}
-
       <h2>Chanokh Tabs</h2>
       <Tabs defaultActive={0} defaultOpen>
         <TabItem title="Chanokh_apt Button">
@@ -92,7 +91,7 @@ function App() {
         </SubMenu>
         <MenuItem>index 2</MenuItem>
       </Menu>
-      <Icon icon="arrow-down" size="2x" theme="primary"></Icon>
+      <Icon icon="arrow-right" size="2x" theme="primary"></Icon>
     </div>
   );
 }
