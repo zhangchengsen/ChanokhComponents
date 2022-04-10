@@ -24,7 +24,7 @@ type NativeButtonProps = ButtonProps & React.ButtonHTMLAttributes<HTMLElement>; 
 type AnchorButtonProps = ButtonProps & React.AnchorHTMLAttributes<HTMLElement>; //原生anchor有些必须属性
 export type TButtonProps = NativeButtonProps & AnchorButtonProps;
 // 传入类型 传入 原生button属性 或原生anchors属性 或自定义元素属性
-const Button: React.FC<TButtonProps> = memo((props) => {
+export const Button: React.FC<TButtonProps> = memo((props) => {
   const { className, disabled, size, btnType, children, href, ...restProps } =
     props;
   const classes = classNames(className, "btn", {
@@ -50,4 +50,3 @@ Button.defaultProps = {
   disabled: false,
   btnType: ButtonType.Default,
 };
-export default Button;

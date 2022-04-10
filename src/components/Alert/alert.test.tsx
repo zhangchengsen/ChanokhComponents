@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Alert, { AlertType, PAlert } from "./index";
+import { Alert, AlertType, PAlert } from "./index";
 const testProps: PAlert = {
   type: AlertType.Primary,
   className: "appp Alert-Primary",

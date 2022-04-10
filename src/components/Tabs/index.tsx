@@ -7,7 +7,8 @@ import React, {
 } from "react";
 import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
-import Item, { ITabItem } from "./Tab-item";
+import { ITabItem } from ".";
+export * from "./Tab-item";
 type selectType = () => void;
 type onSelectType = (idx: number) => void;
 export interface ITabs {
@@ -22,7 +23,7 @@ export interface IContext {
 }
 
 export const Context = createContext<IContext>({ index: 0 });
-const Tabs: React.FC<ITabs> = memo((props) => {
+export const Tabs: React.FC<ITabs> = memo((props) => {
   const { children, className, defaultActive, defaultOpen, onSelect } = props;
 
   const [curIdx, setCurIdx] = useState(0);
@@ -75,7 +76,9 @@ const Tabs: React.FC<ITabs> = memo((props) => {
     });
   };
 
-  const classes = classNames("Tabs", className);
+  const classes = classNames("Tabs", className, {
+    "Tabs-mb": isOpen,
+  });
 
   return (
     <div className={classes}>
@@ -92,7 +95,7 @@ const Tabs: React.FC<ITabs> = memo((props) => {
         <div>{getContent()}</div>
       </CSSTransition>
 
-      <div className={`Tabs-bottom ${isOpen ? "up" : "down"}`}>
+      <div className={`Tabs-bottom ${isOpen ? "up" : "down"} `}>
         <div
           data-testid="drag"
           onClick={() => setIsOpen(!isOpen)}
@@ -103,11 +106,7 @@ const Tabs: React.FC<ITabs> = memo((props) => {
   );
 });
 
-export const TabItem = Item;
-
 Tabs.defaultProps = {
   defaultActive: 0,
   defaultOpen: false,
 };
-
-export default Tabs;

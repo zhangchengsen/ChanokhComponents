@@ -1,5 +1,13 @@
 // common
-
+.flex {
+  display: flex;
+}
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
 // 按钮
 .btn {
   position: relative;
@@ -319,7 +327,10 @@
   }
   &-bottom {
     padding: 15px;
-    width: 100%;
+    position: relative;
+  }
+  &-mb {
+    margin-bottom: 40px;
   }
 }
 .down {
@@ -335,8 +346,11 @@
   }
 }
 .up {
-  text-align: center;
   opacity: 0;
+  position: absolute;
+  transform:translateX(-50%);
+  left: 50%;
+  padding: 10px;
   animation: _appear 1s linear 0.6s;
   animation-fill-mode: forwards;
   .iconfont {
@@ -348,4 +362,118 @@
 }
 .opacity {
   opacity: 1;
+}
+// Input 
+.Input {
+  padding: $input-padding-y $input-padding-x;
+  background-color: $input-bg;
+  border:  $input-border-width solid $input-border-color;
+  font-size: $input-font-size;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+}
+.Input:focus {
+  outline: none;
+  background-color: $input-focus-bg;
+  // box-shadow: $input-focus-box-shadow;
+}
+
+
+.Input-sm {
+  @include input_size($input-padding-y-sm,$input-padding-x-sm,$input-font-size-sm)
+}
+.Input-lg {
+  @include input_size($input-padding-y-lg,$input-padding-x-lg,$input-font-size-lg)
+}
+.Input_wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.Input_wrapper  {
+  .Input_prepand {
+    // width: 20%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .Input_append {
+    // width: 20%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+.wrapper_prepand  {
+  
+  .Input {
+    width: 80%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+.wrapper_append  {
+  .Input {
+    // width: 80%;
+
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+.wrapper_prepand, .wrapper_append {
+  .Input {
+    // width: 60%;
+  }
+  .Input-disabled {
+    background-color: $input-group-addon-bg;
+    color: $gray-500;
+  }
+}
+.Input_prepand,
+.Input_append {
+  display: flex;
+  align-items: center;
+  padding: $input-padding-y $input-padding-x;
+  margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
+  font-size: $input-font-size; // Match inputs
+  font-weight: $font-weight-normal;
+  line-height: $input-line-height;
+  color: $input-group-addon-color;
+  text-align: center;
+  white-space: nowrap;
+  background-color: $input-group-addon-bg;
+  border: $input-border-width solid $input-group-addon-border-color;
+  border-radius: $input-border-radius;
+}
+.AutoComplete {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  .AutoComplete_list {
+    position: absolute;
+    left: 0; 
+    right: 0;
+    top: 105%;
+    z-index: 2;
+    border: $input-border-width solid $input-border-color;
+    border-radius: $input-border-radius;
+    background-color: white;
+    padding: 5px;
+    
+   >li {
+     list-style: none;
+     display: flex; 
+     align-items: center;
+     justify-content: center;
+   }
+    >li * {
+      
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .Focus_item {
+      list-style: none;
+      color: $primary;
+    }
+  }
 }

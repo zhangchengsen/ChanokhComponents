@@ -8,7 +8,7 @@ export interface IMenuItem {
   style?: React.CSSProperties;
 }
 
-const MenuItem: React.FC<IMenuItem> = memo((props) => {
+export const MenuItem: React.FC<IMenuItem> = memo((props) => {
   const context = useContext(MenuContext);
   const { children, disabled, index, style, className } = props;
   const classes = classNames("Menu-item", className, {
@@ -28,4 +28,3 @@ MenuItem.defaultProps = {
   disabled: false,
 };
 MenuItem.displayName = "MenuItem";
-export default MenuItem;

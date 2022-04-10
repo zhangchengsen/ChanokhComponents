@@ -12,7 +12,7 @@ export interface ITabItem {
   handleContent?: ThandleContet;
 }
 
-const TabItem: React.FC<ITabItem> = memo((props) => {
+export const TabItem: React.FC<ITabItem> = memo((props) => {
   const { title, style, className, index, handleContent, children } = props;
   const context = useContext(Context);
 
@@ -42,4 +42,3 @@ TabItem.defaultProps = {
   disabled: false,
 };
 TabItem.displayName = "TabItem";
-export default TabItem;

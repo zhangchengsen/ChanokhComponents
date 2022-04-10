@@ -15,12 +15,10 @@ export type ThemeProps =
 export interface IconProps extends FontAwesomeIconProps {
   theme?: ThemeProps;
 }
-const Icon: React.FC<IconProps> = memo((props) => {
+export const Icon: React.FC<IconProps> = memo((props) => {
   const { className, theme, ...restProps } = props;
   const classes = classNames("Icon", className, {
     [`Icon-${theme}`]: theme,
   });
   return <FontAwesomeIcon className={classes} {...restProps}></FontAwesomeIcon>;
 });
-
-export default Icon;

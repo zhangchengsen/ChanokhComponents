@@ -18,7 +18,7 @@ interface IAlert {
   onClose?: () => void;
 }
 export type PAlert = IAlert & React.HTMLAttributes<HTMLElement>;
-const Alert: React.FC<PAlert> = memo((props) => {
+export const Alert: React.FC<PAlert> = memo((props) => {
   const {
     type,
     title,
@@ -100,4 +100,3 @@ Alert.defaultProps = {
   },
   top: "10%",
 };
-export default Alert;

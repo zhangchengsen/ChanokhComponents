@@ -7,8 +7,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 // import Button, { ButtonSize, ButtonType, TButtonProps } from "./index";
-import Tabs, { TabItem, ITabs } from "./index";
-import { execPath } from "process";
+import { Tabs, TabItem, ITabs } from "./index";
 
 const testVerProps: ITabs = {
   defaultActive: 0,

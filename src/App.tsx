@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import "./App.css";
-import Alert, { AlertType } from "./components/Alert";
-import Button, { ButtonSize, ButtonType } from "./components/button";
+import { Alert, AlertType } from "./components/Alert";
+import { Button, ButtonSize, ButtonType } from "./components/button";
 import Menu, { MenuItem, SubMenu } from "./components/Menu";
-import Tabs, { TabItem } from "./components/Tabs";
-import Icon from "./components/Icon";
+import { Tabs, TabItem } from "./components/Tabs";
+import { Icon } from "./components/Icon";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
-
+import { Input } from "./components/Input";
+import { AutoComplete, IDataSourceType } from "./components/AutoComplete";
 library.add(fas);
 type bool_key = [boolean, string];
 function App() {
   const [show, setShow] = useState(true);
   // 元组 bool 和key可以同时刷新
   const [showAlert, setShowAlert] = useState<bool_key>([false, "Alert_key"]);
+  const [inputVal, setInputVal] = useState("1");
+  const [autoVal, setAutoVal] = useState("");
+  useEffect(() => {
+    if (inputVal === "123") setInputVal("234");
+  }, [inputVal]);
+  useEffect(() => {
+    if (autoVal === "123") setAutoVal("234");
+  }, [autoVal]);
   const changeShow = () => {
     setShow(false);
     setTimeout(() => {
@@ -23,6 +32,20 @@ function App() {
   const getAlert = () => {
     setShowAlert([true, showAlert[1] + "1"]);
   };
+  const handleFetch = () => {
+    return fetch(`http://api.github.com/search/users?q=${autoVal}`).then(
+      (res) =>
+        res.json().then(({ items }) => {
+          let item: IDataSourceType[] =
+            items.length &&
+            items
+              .slice(0, Math.min(10, items.length - 1))
+              .map((v: any) => ({ value: v.login, ...v }));
+          return item || [];
+        })
+    );
+  };
+
   return (
     <div className="App">
       {showAlert[0] && (
@@ -40,7 +63,7 @@ function App() {
         </div>
       )}
       <h2>Chanokh Tabs</h2>
-      <Tabs defaultActive={0} defaultOpen>
+      <Tabs defaultActive={2} defaultOpen>
         <TabItem title="Chanokh_apt Button">
           <Button>Button</Button>
           <Button autoFocus>AutoFocus Button</Button>
@@ -63,6 +86,66 @@ function App() {
           <Button btnType={ButtonType.Primary} onClick={() => getAlert()}>
             展示Alert组件
           </Button>
+        </TabItem>
+        <TabItem title="Chanokh Input">
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Input style={{ margin: "10px" }} prepand={"https://"}></Input>
+            <Input
+              prepand={"百度一下"}
+              style={{ margin: "10px" }}
+              size="lg"
+              append={"你就知道"}
+              placeholder="我是large"
+              onChange={(e) => setInputVal(e.target.value)}
+              value={inputVal}
+            ></Input>
+            <Input
+              prepand={"百度一下"}
+              style={{ margin: "10px" }}
+              size="lg"
+              append={"我被禁用了"}
+              placeholder="我是large"
+              onChange={(e) => setInputVal(e.target.value)}
+              value={inputVal}
+              disabled
+            ></Input>
+            <Input
+              style={{ margin: "10px" }}
+              size="sm"
+              placeholder="我是small"
+              append={"@163.com"}
+              onChange={(e) => setInputVal(e.target.value)}
+              value={inputVal}
+            ></Input>
+          </div>
+          <div>
+            <p>AutoComplete</p>
+            {/* <div style={{ width: "80%" }}>
+              <AutoComplete
+                value={autoVal}
+                onChange={(e) => setAutoVal(e.target.value)}
+                fetchSuggestion={handleFetch}
+                onSelect={(e) => setAutoVal(e.value)}
+                renderOptions={(item: IDataSourceType) => (
+                  <h5>
+                    <p>name: {item.value}</p>
+                  </h5>
+                )}
+              ></AutoComplete>
+            </div> */}
+            <AutoComplete
+              value={autoVal}
+              onChange={(e) => setAutoVal(e.target.value)}
+              fetchSuggestion={handleFetch}
+              onSelect={(e) => setAutoVal(e.value)}
+              width="200px"
+              renderOptions={(item: IDataSourceType) => (
+                <h5>
+                  <p>name: {item.value}</p>
+                </h5>
+              )}
+            ></AutoComplete>
+          </div>
         </TabItem>
         {/* <TabItem title="tabber"></TabItem> */}
       </Tabs>

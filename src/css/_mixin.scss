@@ -95,3 +95,10 @@
     transform-origin: $direct;
   }
 }
+@mixin input_size($padding-y, $padding-x, $font-size) {
+  padding: $padding-y $padding-x;
+  font-size:  $font-size;
+}
+input::placeholder {
+ color: $input-placeholder-color;
+}

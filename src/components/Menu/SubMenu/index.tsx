@@ -7,8 +7,7 @@ import React, {
 import { IMenuItem } from "../MenuItem";
 import { MenuContext } from "../index";
 import classNames from "classnames";
-import { CSSTransition } from "react-transition-group";
-import Transition from "../../Transition";
+import { Transition } from "../../Transition";
 export interface ISubMenuProps {
   index?: string;
   title?: string;

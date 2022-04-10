@@ -1,12 +1,11 @@
 import React, { memo, createContext, useState, useEffect } from "react";
 import classNames from "classnames";
-import Item from "./MenuItem";
 import Sub from "./SubMenu";
-import Alert from "../Alert";
+import { Alert } from "../Alert";
+export * from "./MenuItem";
 
 type selectMode = "vertical" | "horizontal";
 type setSelect = (idx: string) => void;
-export const MenuItem = Item;
 export const SubMenu = Sub;
 export interface IMenuProps {
   defaultIdx?: string;
