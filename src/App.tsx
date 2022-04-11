@@ -8,6 +8,7 @@ import { Icon } from "./components/Icon";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { Input } from "./components/Input";
+import { Upload } from "./components/Upload";
 import { AutoComplete, IDataSourceType } from "./components/AutoComplete";
 library.add(fas);
 type bool_key = [boolean, string];
@@ -63,7 +64,7 @@ function App() {
         </div>
       )}
       <h2>Chanokh Tabs</h2>
-      <Tabs defaultActive={2} defaultOpen>
+      <Tabs defaultActive={1} defaultOpen>
         <TabItem title="Chanokh_apt Button">
           <Button>Button</Button>
           <Button autoFocus>AutoFocus Button</Button>
@@ -81,6 +82,37 @@ function App() {
           <Button btnType={ButtonType.Link} disabled>
             Link Disabled
           </Button>
+        </TabItem>
+        <TabItem title="Chanokh Upload">
+          <Upload
+            action="https://jsonplaceholder.typicode.com/posts"
+            onProgress={(e, f) => console.log("上传中", e)}
+            onSuccess={(e, f) => console.log("成功", e)}
+            onError={(e, f) => console.log("错误", e)}
+          ></Upload>
+          <Upload
+            action="https://jsonplaceholder.typicode.com/posts"
+            onProgress={(e, f) => console.log("progress", e)}
+            onSuccess={(e, f) => console.log("成功", e)}
+            onError={(e, f) => console.log("错误", e)}
+            beforeUpload={(f) => {
+              if (f.size / 1024 > 50) console.log("你的文件太大啦");
+              return false;
+            }}
+            onChange={() => console.log("一次上传流程结束了")}
+          ></Upload>
+          <Upload
+            action="https://jsonplaceholder.typicode.com/posts"
+            onProgress={(e, f) => console.log("progress", e)}
+            onSuccess={(e, f) => console.log("成功", e)}
+            onError={(e, f) => console.log("错误", e)}
+            beforeUpload={(f) => {
+              console.log(f.name);
+              const newFile = new File([f], "new_file.docx", { type: f.type });
+              return Promise.resolve(newFile);
+            }}
+            onChange={(f) => console.log("一次上传流程结束了", f.name)}
+          ></Upload>
         </TabItem>
         <TabItem title="Chanokh Alert">
           <Button btnType={ButtonType.Primary} onClick={() => getAlert()}>
@@ -120,19 +152,7 @@ function App() {
           </div>
           <div>
             <p>AutoComplete</p>
-            {/* <div style={{ width: "80%" }}>
-              <AutoComplete
-                value={autoVal}
-                onChange={(e) => setAutoVal(e.target.value)}
-                fetchSuggestion={handleFetch}
-                onSelect={(e) => setAutoVal(e.value)}
-                renderOptions={(item: IDataSourceType) => (
-                  <h5>
-                    <p>name: {item.value}</p>
-                  </h5>
-                )}
-              ></AutoComplete>
-            </div> */}
+
             <AutoComplete
               value={autoVal}
               onChange={(e) => setAutoVal(e.target.value)}
