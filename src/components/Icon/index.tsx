@@ -11,7 +11,8 @@ export type ThemeProps =
   | "secondary"
   | "success"
   | "info"
-  | "warning";
+  | "warning"
+  | "danger";
 export interface IconProps extends FontAwesomeIconProps {
   theme?: ThemeProps;
 }

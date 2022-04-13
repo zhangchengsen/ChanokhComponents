@@ -3,3 +3,11 @@
     color: $val;
   }
 }
+@each $key, $val in $theme-colors {
+  .type-#{$key} {
+    background-color: $val;
+    color: black;
+  }
+}
+
+

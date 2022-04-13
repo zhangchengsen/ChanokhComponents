@@ -54,3 +54,14 @@
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
   transform-origin: center top;
 }
+@keyframes blink{
+  50%{
+    opacity: 0.8;
+   
+  }
+}
+
+
+.flash {
+  animation: blink 1.2s ease-in-out infinite;
+}

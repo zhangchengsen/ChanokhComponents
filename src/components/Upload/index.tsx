@@ -1,13 +1,22 @@
-import React, { ChangeEvent, FC, memo, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  FC,
+  memo,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import axios from "axios";
 import { Button, ButtonType } from "../button";
-export type FileStatus = "uploading" | "ready" | "success" | "fail";
+import { UploadList } from "./UploadList";
+// export type FileStatus = "uploading" | "ready" | "success" | "fail";
 export interface IFileProps {
   uid: string;
-  status?: FileStatus;
+  //   status?: FileStatus;
+  status?: string;
   name: string;
   size: number;
-  raw?: File;
+  raw?: File | object;
   response?: any;
   error?: any;
 }
@@ -18,12 +27,25 @@ export interface IUploadProps {
   onChange?: (f: File) => void;
   onSuccess?: (data: any, file: File) => void;
   onError?: (error: any, file: File) => void;
-  onRemoved?: () => void;
+  onRemoved?: (f: IFileProps) => void;
+  defaultUploadList?: IFileProps[];
 }
 export const Upload: FC<IUploadProps> = memo((props) => {
-  const { onChange, action, onSuccess, onProgress, onError, beforeUpload } =
-    props;
-
+  const {
+    onChange,
+    action,
+    onSuccess,
+    onProgress,
+    onError,
+    beforeUpload,
+    defaultUploadList,
+    onRemoved,
+  } = props;
+  useEffect(() => {
+    if (defaultUploadList && defaultUploadList.length) {
+      setFileList([...defaultUploadList]);
+    }
+  }, [defaultUploadList]);
   const [fileList, setFileList] = useState<IFileProps[]>([]);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -57,12 +79,10 @@ export const Upload: FC<IUploadProps> = memo((props) => {
     updateMsg: Partial<IFileProps>
   ) => {
     setFileList((preList) => {
-      let list = preList.map((v) => {
-        if ((v.uid = updateObj.uid)) return { ...v, ...updateMsg };
+      return preList.map((v) => {
+        if (v.uid === updateObj.uid) return { ...v, ...updateMsg };
         else return v;
       });
-      console.log(list);
-      return list;
     });
   };
   // 发送请求
@@ -74,7 +94,9 @@ export const Upload: FC<IUploadProps> = memo((props) => {
       status: "ready",
       raw: file,
     };
-    setFileList([...fileList, fileData]);
+    setFileList((preList) => {
+      return [...preList, fileData];
+    });
     let formData = new FormData();
     formData.append(file.name, file);
     axios
@@ -101,6 +123,18 @@ export const Upload: FC<IUploadProps> = memo((props) => {
         updateFileList(fileData, { status: "fail", error: err });
       });
   };
+  // 删除
+  const handleRemove = (item: IFileProps) => {
+    console.log(item.uid);
+    setFileList((preList) => {
+      return preList.filter((v) => {
+        console.log(v.uid);
+        return item.uid !== v.uid;
+      });
+    });
+    if (onRemoved) onRemoved(item);
+  };
+
   return (
     <div className="Upload">
       <Button btnType={ButtonType.Primary} onClick={() => handleClick()}>
@@ -113,6 +147,18 @@ export const Upload: FC<IUploadProps> = memo((props) => {
         type="file"
         onChange={(e) => handleFileChange(e)}
       ></input>
+      {!!fileList.length &&
+        fileList.map((v) => {
+          return (
+            <UploadList
+              key={v.uid}
+              {...v}
+              onRemoved={(f: IFileProps) => {
+                handleRemove(f);
+              }}
+            ></UploadList>
+          );
+        })}
     </div>
   );
 });

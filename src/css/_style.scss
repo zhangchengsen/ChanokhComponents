@@ -477,3 +477,114 @@
     }
   }
 }
+.List {
+  padding: 10px 20px;
+
+  .List_border {
+    border-bottom: 1px solid $gray-400;
+  }
+  .List_middle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.Upload {
+  &-success {
+    svg {
+      color: $primary;
+    }
+  }
+  &-fail {
+    svg {
+
+    color: $danger;
+    }
+  }
+  // &-ready {
+
+  // }
+}
+.UploadList {
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  
+  justify-content: space-between;
+  &:hover {
+    background: $gray-200;
+  }
+  .UploadList-left {
+    display: flex;
+    
+  }
+  .UploadList-right {
+    width: 20%;
+    text-align: right;
+    .Upload-delete {
+      display: none;
+    }
+  }
+  .UploadList-right:hover {
+    text-align: right;
+    cursor: pointer;
+    .Upload-delete {
+      display: block;
+    }
+    .Upload-Icon {
+      display: none;
+    }
+  }
+}
+
+.Progress-bar-outter {
+  position: relative;
+  border-radius: 10px;
+  background-color: $gray-200;
+  .Progress-bar-inner {
+    border-radius: 10px;
+    text-align: right;
+    position: absolute;
+    position: relative;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    &-text {
+      position: relative;
+      z-index: 50;
+      color: #fff;
+      font-weight: 600;
+
+    }
+    .Progress-bar-bg {
+      animation: blink 1.2s ease-in-out infinite;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      border-radius: 10px;
+    }
+    .Progress-bar-drag {
+      
+      transform: none !important;
+      z-index: 3;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -10px;
+      background-color: $primary;
+      &-dot {
+      transform: none !important;
+
+        position: absolute;
+        top: -8px;
+        bottom: -8px;
+        width: 16px;
+        right: 0;
+        background-color: $gray-400;
+      }
+    }
+  }
+}

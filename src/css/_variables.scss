@@ -22,13 +22,20 @@ $teal: #20c997 !default;
 $cyan: #17a2b8 !default;
 
 $light: #fff !default; //用户定义过变量值 sass就不会再用!default里的值了
-$dark: #000 !default;
-$primary: #1e80ff !default;
-$secondary: #35333c !default;
-$success: #1ba784 !default;
-$info: #f1ca17 !default;
-$danger: #ed3b2f !default;
-$blue: #5698c3 !default;
+$dark: rgba(0,0,0) !default;
+$primary: rgba(30,128,255) !default;
+$secondary: rgba(53,51,60) !default;
+$success: rgba(27,167,132) !default;
+$info: rgba(241, 202, 23) !default;
+$danger: rgba(237,59,47) !default;
+$blue: rgba(86,152,195) !default;
+$flash_dark: rgba(0,0,0,.75) !default;
+$flash_primary: rgba(30,128,255,.75) !default;
+$flash_secondary: rgba(53,51,60,.75) !default;
+$flash_success: rgba(27,167,132,.75) !default;
+$flash_info: rgba(241, 202, 23,.75) !default;
+$flash_danger: rgba(237,59,47,.75) !default;
+$flash_blue: rgba(86,152,195,.75) !default;
 
 $theme-colors: (
   "primary": $primary,
@@ -38,6 +45,7 @@ $theme-colors: (
   "danger": $danger,
   "light": $light,
   "dark": $dark,
+
 );
 
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,

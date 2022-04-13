@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Alert, AlertType } from "./components/Alert";
 import { Button, ButtonSize, ButtonType } from "./components/button";
@@ -8,8 +8,9 @@ import { Icon } from "./components/Icon";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { Input } from "./components/Input";
-import { Upload } from "./components/Upload";
+import { Upload, IFileProps } from "./components/Upload";
 import { AutoComplete, IDataSourceType } from "./components/AutoComplete";
+import { Progress } from "./components/Progress";
 library.add(fas);
 type bool_key = [boolean, string];
 function App() {
@@ -18,6 +19,55 @@ function App() {
   const [showAlert, setShowAlert] = useState<bool_key>([false, "Alert_key"]);
   const [inputVal, setInputVal] = useState("1");
   const [autoVal, setAutoVal] = useState("");
+  const defaultUploadObj: IFileProps[] = [
+    {
+      name: "QQ图片20220411202606.jpg",
+      uid: "16496837657320.8608723600912",
+      size: 70159,
+      status: "success",
+      raw: {},
+      error: {
+        message: "Network Error",
+        name: "Error",
+        stack:
+          "Error: Network Error\n    at createError (http://localhost:3000/static/js/bundle.js:18960:15)\n    at XMLHttpRequest.handleError (http://localhost:3000/static/js/bundle.js:18345:14)",
+        config: {
+          transitional: {
+            silentJSONParsing: true,
+            forcedJSONParsing: true,
+            clarifyTimeoutError: false,
+          },
+          transformRequest: [null],
+          transformResponse: [null],
+          timeout: 0,
+          xsrfCookieName: "XSRF-TOKEN",
+          xsrfHeaderName: "X-XSRF-TOKEN",
+          maxContentLength: -1,
+          maxBodyLength: -1,
+          headers: {
+            Accept: "application/json, text/plain, */*",
+          },
+          method: "post",
+          url: "https://jsonplaceholder.typicode.com/posts",
+          data: {},
+        },
+        status: null,
+      },
+      response: {
+        id: 101,
+      },
+    },
+    {
+      name: "云.txt",
+      uid: "16496837657320.8608723630500912",
+      size: 79,
+      status: "success",
+      raw: {},
+      response: {
+        id: 101,
+      },
+    },
+  ];
   useEffect(() => {
     if (inputVal === "123") setInputVal("234");
   }, [inputVal]);
@@ -64,7 +114,7 @@ function App() {
         </div>
       )}
       <h2>Chanokh Tabs</h2>
-      <Tabs defaultActive={1} defaultOpen>
+      <Tabs defaultActive={4} defaultOpen>
         <TabItem title="Chanokh_apt Button">
           <Button>Button</Button>
           <Button autoFocus>AutoFocus Button</Button>
@@ -89,8 +139,9 @@ function App() {
             onProgress={(e, f) => console.log("上传中", e)}
             onSuccess={(e, f) => console.log("成功", e)}
             onError={(e, f) => console.log("错误", e)}
+            defaultUploadList={defaultUploadObj}
           ></Upload>
-          <Upload
+          {/* <Upload
             action="https://jsonplaceholder.typicode.com/posts"
             onProgress={(e, f) => console.log("progress", e)}
             onSuccess={(e, f) => console.log("成功", e)}
@@ -100,8 +151,8 @@ function App() {
               return false;
             }}
             onChange={() => console.log("一次上传流程结束了")}
-          ></Upload>
-          <Upload
+          ></Upload> */}
+          {/* <Upload
             action="https://jsonplaceholder.typicode.com/posts"
             onProgress={(e, f) => console.log("progress", e)}
             onSuccess={(e, f) => console.log("成功", e)}
@@ -112,7 +163,7 @@ function App() {
               return Promise.resolve(newFile);
             }}
             onChange={(f) => console.log("一次上传流程结束了", f.name)}
-          ></Upload>
+          ></Upload> */}
         </TabItem>
         <TabItem title="Chanokh Alert">
           <Button btnType={ButtonType.Primary} onClick={() => getAlert()}>
@@ -166,6 +217,9 @@ function App() {
               )}
             ></AutoComplete>
           </div>
+        </TabItem>
+        <TabItem title="Progress">
+          <Progress percent={20} scrollHeight={50}></Progress>
         </TabItem>
         {/* <TabItem title="tabber"></TabItem> */}
       </Tabs>
