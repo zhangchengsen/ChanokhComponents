@@ -12,6 +12,7 @@ import { Upload, IFileProps } from "./components/Upload";
 import { AutoComplete, IDataSourceType } from "./components/AutoComplete";
 import { Progress } from "./components/Progress";
 library.add(fas);
+
 type bool_key = [boolean, string];
 function App() {
   const [show, setShow] = useState(true);
@@ -114,7 +115,7 @@ function App() {
         </div>
       )}
       <h2>Chanokh Tabs</h2>
-      <Tabs defaultActive={4} defaultOpen>
+      <Tabs defaultActive={1} defaultOpen>
         <TabItem title="Chanokh_apt Button">
           <Button>Button</Button>
           <Button autoFocus>AutoFocus Button</Button>
@@ -140,7 +141,38 @@ function App() {
             onSuccess={(e, f) => console.log("成功", e)}
             onError={(e, f) => console.log("错误", e)}
             defaultUploadList={defaultUploadObj}
-          ></Upload>
+          >
+            <Button btnType={ButtonType.Default}>Upload Button</Button>
+          </Upload>
+          <Upload
+            action="https://jsonplaceholder.typicode.com/posts"
+            onSuccess={(e, f) => console.log("成功", f.name)}
+            onError={(e, f) => console.log("错误", f.name)}
+            data={{ itheima: "zcs" }}
+            headers={{ token: "jwt.........." }}
+            multiple
+          >
+            <Button btnType={ButtonType.Primary}>Upload</Button>
+          </Upload>
+          <Upload
+            action="https://jsonplaceholder.typicode.com/posts"
+            onSuccess={(e, f) => console.log("成功", f.name)}
+            onError={(e, f) => console.log("错误", f.name)}
+            drag
+          >
+            <div
+              style={{
+                height: "80px",
+                flexDirection: "column",
+                border: "1px solid #d9d9d9c5",
+                margin: "10px",
+              }}
+              className="flex align-center justify-center "
+            >
+              <Icon icon="upload"></Icon>
+              <div>点击或将文件拖拽至此处</div>
+            </div>
+          </Upload>
           {/* <Upload
             action="https://jsonplaceholder.typicode.com/posts"
             onProgress={(e, f) => console.log("progress", e)}
@@ -220,6 +252,12 @@ function App() {
         </TabItem>
         <TabItem title="Progress">
           <Progress percent={20} scrollHeight={50}></Progress>
+          <Progress
+            percent={20}
+            scrollHeight={30}
+            showDots
+            styles={{ margin: "20px" }}
+          ></Progress>
         </TabItem>
         {/* <TabItem title="tabber"></TabItem> */}
       </Tabs>

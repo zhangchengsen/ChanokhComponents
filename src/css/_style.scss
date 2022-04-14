@@ -557,7 +557,7 @@
 
     }
     .Progress-bar-bg {
-      animation: blink 1.2s ease-in-out infinite;
+      animation: blink 1.5s ease-in-out infinite;
       position: absolute;
       left: 0;
       top: 0;
@@ -587,4 +587,10 @@
       }
     }
   }
+}
+.Dragger {
+  width: 100%;
+}
+.Dragger_isOver {
+  opacity: .5;
 }
