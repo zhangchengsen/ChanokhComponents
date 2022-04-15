@@ -171,21 +171,18 @@ export const Upload: FC<IUploadProps> = memo((props) => {
   };
 
   return (
-    <div
-      className="Upload"
-      style={{ width }}
-      onClick={() => handleClick()}
-      {...restProps}
-    >
+    <div className="Upload" style={{ width }} {...restProps}>
       {/* <Button btnType={ButtonType.Primary} onClick={() => handleClick()}>
         Upload
       </Button> */}
+      <div onClick={() => handleClick()}>
+        {drag ? (
+          <Dragger onFile={(e) => uploadFiles(e)}>{children}</Dragger>
+        ) : (
+          children
+        )}
+      </div>
 
-      {drag ? (
-        <Dragger onFile={(e) => uploadFiles(e)}>{children}</Dragger>
-      ) : (
-        children
-      )}
       <input
         className="Upload-input"
         style={{ display: "none" }}

@@ -86,7 +86,7 @@ describe("test Upload component", () => {
     const UploadList = screen.queryByTestId("Upload-list");
     await waitFor(() => {
       expect(
-        UploadList.getElementsByClassName("Upload-Icon-success").length
+        UploadList?.getElementsByClassName("Upload-Icon-success").length
       ).toBeGreaterThan(0);
     });
 

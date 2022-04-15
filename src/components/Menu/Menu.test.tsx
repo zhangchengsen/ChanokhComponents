@@ -6,7 +6,7 @@ import {
   RenderResult,
 } from "@testing-library/react";
 // import Button, { ButtonSize, ButtonType, TButtonProps } from "./index";
-import Menu, { MenuItem, IMenuProps, SubMenu } from "./index";
+import { MenuItem, IMenuProps, SubMenu, Menu } from "./index";
 const testProps: IMenuProps = {
   defaultIdx: "0",
   onSelect: jest.fn(),

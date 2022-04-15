@@ -7,7 +7,15 @@ export interface UploadListProps extends IFileProps {
 }
 export const UploadList: React.FC<UploadListProps> = memo((props) => {
   const renderIcon = () => {
-    if (props.status === "uploading")
+    if (props.status === "ready") {
+      return (
+        <Icon
+          className={`Upload-Icon-${props.status}`}
+          icon="minus"
+          theme="primary"
+        ></Icon>
+      );
+    } else if (props.status === "uploading")
       return (
         <Icon
           className={`Upload-Icon-${props.status}`}

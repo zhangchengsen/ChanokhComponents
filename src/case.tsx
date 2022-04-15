@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Alert, AlertType } from "./components/Alert";
 import { Button, ButtonSize, ButtonType } from "./components/button";
-import Menu, { MenuItem, SubMenu } from "./components/Menu";
+import { Menu, MenuItem, SubMenu } from "./components/Menu";
 import { Tabs, TabItem } from "./components/Tabs";
 import { Icon } from "./components/Icon";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -263,7 +263,7 @@ function App() {
       </Tabs>
       {/* Menu */}
       <h2>Chanokh Menu</h2>
-      <Menu defaultIdx={"2"} onSelect={(idx) => {}}>
+      <Menu defaultIdx={"2"} onSelect={(idx: string) => {}}>
         <MenuItem>index 0</MenuItem>
         <MenuItem>index 1</MenuItem>
         <MenuItem disabled>disabled</MenuItem>
@@ -273,7 +273,7 @@ function App() {
         </SubMenu>
       </Menu>
       <br />
-      <Menu mode="vertical" defaultIdx={"2"} onSelect={(idx) => {}}>
+      <Menu mode="vertical" defaultIdx={"2"} onSelect={(idx: string) => {}}>
         <MenuItem>index 0</MenuItem>
         <MenuItem disabled>disabled</MenuItem>
         <SubMenu title="嗨12221">

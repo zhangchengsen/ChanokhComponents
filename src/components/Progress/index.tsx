@@ -1,5 +1,4 @@
 import React, { CSSProperties, memo, useRef, useState, useEffect } from "react";
-import classNames from "classnames";
 
 export interface IProgressProps {
   scrollHeight?: number;
@@ -26,8 +25,8 @@ export const Progress: React.FC<IProgressProps> = memo((props) => {
     className,
   } = props;
 
-  const classes = classNames("");
-  const [offset, setOffset] = useState<number>(-1);
+  // const classes = classNames("");
+  // const [offset, setOffset] = useState<number>(-1);
   // const [isDragging, setIsDragging] = useState<boolean>(false);
   const divRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef(null);

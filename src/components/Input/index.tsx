@@ -4,7 +4,6 @@ import React, {
   InputHTMLAttributes,
   ReactElement,
   CSSProperties,
-  useState,
   ChangeEvent,
 } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -19,6 +18,7 @@ export interface InputProps
   className?: string;
   style?: CSSProperties;
   value?: string;
+  width?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 export const Input: FC<InputProps> = memo((props) => {
@@ -30,6 +30,7 @@ export const Input: FC<InputProps> = memo((props) => {
     icon,
     className,
     style,
+    width,
     ...restProps
   } = props;
   const classes = classNames("Input", {
@@ -54,7 +55,7 @@ export const Input: FC<InputProps> = memo((props) => {
     restProps.value = fixControlledValue(props.value);
   }
   return (
-    <div className={wrapper_classes} style={style}>
+    <div className={wrapper_classes} style={{ width, ...style }}>
       {prepand && <div className="Input_prepand">{prepand}</div>}
       <input
         disabled={disabled}
@@ -67,5 +68,6 @@ export const Input: FC<InputProps> = memo((props) => {
   );
 });
 Input.defaultProps = {
+  width: "300px",
   disabled: false,
 };

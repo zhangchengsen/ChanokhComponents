@@ -55,8 +55,8 @@ const SubMenu: React.FC<ISubMenuProps> = memo((props) => {
       const childrenEle = item as FunctionComponentElement<IMenuItem>;
       const { displayName } = childrenEle.type;
       if (displayName !== "MenuItem") {
-        throw "SubMenu children must be MenuItem";
-        return "";
+        throw new Error("SubMenu children must be MenuItem");
+
         // 产生 2-1的形式
       } else
         return React.cloneElement(childrenEle, { index: `${index}-${idx}` });

@@ -1,18 +1,19 @@
 import React, { memo, createContext, useState, useEffect } from "react";
 import classNames from "classnames";
 import Sub from "./SubMenu";
-import { Alert } from "../Alert";
 export * from "./MenuItem";
-
 type selectMode = "vertical" | "horizontal";
 type setSelect = (idx: string) => void;
 export const SubMenu = Sub;
+// export const MenuItem = Item;
+
 export interface IMenuProps {
   defaultIdx?: string;
   mode?: selectMode;
   onSelect?: setSelect;
   className?: string;
   style?: React.CSSProperties;
+  width?: string;
 }
 interface IMenuContext {
   index: string;
@@ -20,8 +21,9 @@ interface IMenuContext {
   mode?: string;
 }
 export const MenuContext = createContext<IMenuContext>({ index: "0" });
-const Menu: React.FC<IMenuProps> = memo((props) => {
-  const { children, mode, onSelect, style, className, defaultIdx } = props;
+export const Menu: React.FC<IMenuProps> = memo((props) => {
+  const { children, mode, onSelect, style, className, defaultIdx, width } =
+    props;
   const classes = classNames("Menu", className, {
     [`Menu-${mode}`]: mode,
   });
@@ -59,16 +61,12 @@ const Menu: React.FC<IMenuProps> = memo((props) => {
         return React.cloneElement(childElement, { index: index.toString() });
       } else {
         flag = 0;
-        return (
-          <Alert type="danger" title="Error">
-            Menu's children must be MenuItem
-          </Alert>
-        );
+        throw new Error("Menu's children must be MenuItem");
       }
     });
   };
   return (
-    <ul className={classes} style={style} data-testid="Menu-wrap">
+    <ul className={classes} style={{ ...style, width }} data-testid="Menu-wrap">
       {/* 传递数据 */}
       <MenuContext.Provider value={passContext}>
         {renderChildren()}
@@ -80,6 +78,5 @@ Menu.defaultProps = {
   defaultIdx: "0",
   mode: "horizontal",
   onSelect: () => {},
+  width: "100%",
 };
-
-export default Menu;

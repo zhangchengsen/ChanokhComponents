@@ -2,6 +2,9 @@
   "name": "chanokh_components",
   "version": "0.1.0",
   "private": true,
+  "main": "build/index.js",
+  "module":"build/index.js",
+  "type":"build/index.d.ts",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
@@ -21,13 +24,17 @@
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
     "react-transition-group": "^4.4.2",
+    "rimraf": "^3.0.2",
     "typescript": "^4.6.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "clean": "rimraf ./build",
+    "build": "yarn clean && yarn build-ts && yarn build-css",
     "test": "react-scripts test",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "dart-sass ./src/css/index.scss ./build/index.css",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -49,6 +56,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-transition-group": "^4.4.4"
+    "@types/react-transition-group": "^4.4.4",
+    "dart-sass": "^1.25.0",
+    "node-sass": "npm:dart-sass@^1.25.0"
   }
 }

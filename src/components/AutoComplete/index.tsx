@@ -16,7 +16,6 @@ export interface DataSourceType {
   value: string;
 }
 export type IDataSourceType<T = {}> = T & DataSourceType;
-type a = {} & InputProps;
 
 export interface AutoCompleteProps
   extends Omit<InputProps, "onSelect" | "prepand" | "append"> {
